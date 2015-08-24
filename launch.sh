@@ -42,4 +42,4 @@ while getopts ":sn:p:c:" opt; do
 done
 
 # Start jira with jira user
-su -m jira -c "bin/start-jira.sh -fg"
+su -m conf -c "bin/start-confluence.sh -fg"
