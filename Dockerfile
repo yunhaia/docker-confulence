@@ -21,6 +21,7 @@ RUN curl -Lks https://www.atlassian.com/software/confluence/downloads/binary/atl
 	&& tar -zxf /tmp/conf.tar.gz --strip=1 -C /opt/conf \
 	&& chown -R root:root /opt/conf \
 	&& chown -R 547:root /opt/conf/logs /opt/conf/temp /opt/conf/work \
+	&& echo -e "\nconfluence.home=$CONF_HOME" >> "/opt/conf/confluence/WEB-INF/classes/confluence-init.properties" \
 	&& rm /tmp/conf.tar.gz
 
 # Add conf customizer and launcher
@@ -30,7 +31,7 @@ COPY launch.sh /launch
 RUN chmod +x /launch
 
 # Expose ports
-EXPOSE 8090
+EXPOSE 8090 8443
 
 # Workdir
 WORKDIR /opt/conf
